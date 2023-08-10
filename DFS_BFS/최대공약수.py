@@ -1,3 +1,5 @@
+# 재귀함수 활용
+
 # made by JW
 def gcd(a,b):
     # a가 항상 더 큰수가 되도록.
