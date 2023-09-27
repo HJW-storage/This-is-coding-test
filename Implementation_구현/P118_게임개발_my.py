@@ -10,31 +10,31 @@ d_dy = [0, -1, 0, 1]
 
 
 while True:
-    cnt = 0     # 메뉴얼 3번 동작을 위한 카운트
+    end_condition = 0     # 메뉴얼 3번 동작을 위한 카운트
     for _ in range(4):  # 왼쪽 방향부터 4번 검사
-        cnt += 1
+        end_condition += 1
         dd -= 1
         if dd == -1:
             dd = 3      # 초기화
-        next_dx = dx + d_dx[dd]
-        next_dy = dy + d_dy[dd]
-        if (next_dx >= 0) and (next_dx < n) and (next_dy >= 0) and (next_dy < m):
-            if arr[next_dx][next_dy] == 0:
+        next_row = dx + d_dx[dd]
+        next_col = dy + d_dy[dd]
+        if (next_row >= 0) and (next_row < n) and (next_col >= 0) and (next_col < m):
+            if arr[next_row][next_col] == 0:
                 arr[dx][dy] = 3     # 한번 지나간 곳은 3으로 표시
-                dx, dy = next_dx, next_dy   # 이동하고 for문 탈출
+                dx, dy = next_row, next_col   # 이동하고 for문 탈출
                 break
 
-    if cnt == 4:
-        temp_d = dd + 2
-        if temp_d >= 4:
-            temp_d -= 4
-        next_dx = dx + d_dx[temp_d]
-        next_dy = dy + d_dy[temp_d]
-        if arr[next_dx][next_dy] == 1:    # 메뉴얼 3번 동작에서 뒤쪽 이동시 바다인 경우, 프로그램 종료
+    if end_condition == 4:
+        temp_direction = dd + 2
+        if temp_direction >= 4:
+            temp_direction -= 4
+        next_row = dx + d_dx[temp_direction]
+        next_col = dy + d_dy[temp_direction]
+        if arr[next_row][next_col] == 1:    # 메뉴얼 3번 동작에서 뒤쪽 이동시 바다인 경우, 프로그램 종료
             break
         else:
             arr[dx][dy] = 3
-            dx, dy = next_dx, next_dy
+            dx, dy = next_row, next_col
         # print(arr)
 print(arr)
 
